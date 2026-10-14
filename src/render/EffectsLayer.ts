@@ -144,9 +144,13 @@ export class EffectsLayer {
     }
   }
 
-  update(dt: number): void {
+  /**
+   * Efekt saatini `dt` saniye ilerletir (çizmez). Oyun sahnesi bunu karenin olaylarını işlemeden ÖNCE çağırır:
+   * böylece yeni olaylar ilk çizimde "şimdi" olur ve kısa efektler (80 ms'lik lazer ışını) yavaş karelerde de
+   * en az bir kare görünür.
+   */
+  advance(dt: number): void {
     this.clock += dt;
-    this.draw();
   }
 
   /**

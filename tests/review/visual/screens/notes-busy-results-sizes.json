@@ -1,0 +1,78 @@
+[
+  {
+    "name": "kurulan kule",
+    "value": 10
+  },
+  {
+    "name": "8 dalga sonrası",
+    "value": {
+      "wave": 8,
+      "status": "building",
+      "lives": 10
+    }
+  },
+  {
+    "name": "9. dalga 6 sn",
+    "value": {
+      "e": 23,
+      "p": 0,
+      "fps": 11
+    }
+  },
+  {
+    "name": "10. dalga üst üste",
+    "value": {
+      "e": 29,
+      "lives": 10
+    }
+  },
+  {
+    "name": "zafer denemesi",
+    "value": {
+      "status": "victory",
+      "stars": 3,
+      "lives": 20
+    }
+  },
+  {
+    "name": "1 yıldız denemesi",
+    "value": {
+      "status": "victory",
+      "stars": 1,
+      "lives": 3
+    }
+  },
+  {
+    "name": "yenilgi denemesi",
+    "value": {
+      "status": "defeat",
+      "waves": 5,
+      "lives": 0
+    }
+  },
+  {
+    "name": "yenilgi alt yazısı genişliği / pencere",
+    "value": {
+      "subtitle": 444,
+      "window": 480
+    }
+  },
+  {
+    "name": "1366×768 tuval",
+    "value": {
+      "x": 0,
+      "y": 0,
+      "width": 1365.328125,
+      "height": 768
+    }
+  },
+  {
+    "name": "1920×1080 tuval",
+    "value": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    }
+  }
+]

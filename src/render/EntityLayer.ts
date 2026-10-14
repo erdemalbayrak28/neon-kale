@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { COLORS, LAYOUT, TILE } from '../config';
 import type { Simulation } from '../core/simulation';
-import type { GameStateView } from '../core/types';
+import type { GameStateView, ProjectileState } from '../core/types';
 import { DEPTH } from './depth';
 import { glowCircle, lighten } from './neon';
 import { drawEnemy, drawTower, towerColor } from './shapes';
@@ -17,6 +17,7 @@ interface Orb {
 
 const HIT_FLASH = 0.09;
 const SHOT_FLASH = 0.16;
+const NO_PROJECTILES: readonly ProjectileState[] = [];
 
 export class EntityLayer {
   private readonly towers: Phaser.GameObjects.Graphics;
@@ -97,7 +98,10 @@ export class EntityLayer {
   private drawProjectiles(state: GameStateView, clock: number): void {
     this.seenOrbs.clear();
     const pulse = 1 + Math.sin(clock * 30) * 0.08;
-    for (const p of state.projectiles) {
+    // Oyun bitince zaman durur; havada kalan mermiler yerinde donmuş görünmesin diye gizlenir.
+    const over = state.status === 'victory' || state.status === 'defeat';
+    const projectiles = over ? NO_PROJECTILES : state.projectiles;
+    for (const p of projectiles) {
       this.seenOrbs.add(p.id);
       let orb = this.orbs.get(p.id);
       if (!orb) {

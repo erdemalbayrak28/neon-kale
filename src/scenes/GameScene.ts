@@ -121,11 +121,11 @@ export class GameScene extends Phaser.Scene {
     const dt = Math.min(delta / 1000, MAX_FRAME_DT);
     if (!this.paused && this.status === 'wave' && isPortraitPhone()) this.setPaused(true);
     if (!this.paused) {
+      // Önce efekt saati ilerler, sonra bu karenin olayları eklenir (bkz. EffectsLayer.advance).
+      this.effects.advance(dt);
       this.process(this.sim.update(dt * this.speed), 0);
-      this.effects.update(dt);
-    } else {
-      this.effects.draw();
     }
+    this.effects.draw();
     this.renderFrame();
   }
 
@@ -226,6 +226,8 @@ export class GameScene extends Phaser.Scene {
       speed: this.speed,
       paused: this.paused,
     });
+    // Oyun bitince hız ve duraklatma düğmelerinin işlevi kalmaz.
+    this.topBar.setEnabled(!ended);
 
     const preview = sim.nextWavePreview();
     const canCallEarly = state.status === 'wave' && state.spawningDone && state.wavesStarted < state.totalWaves;

@@ -21,7 +21,7 @@ Bu belge, oyunun neye benzemesi ve nasıl davranması gerektiğinin tek kaynağ�
 - **Çizim katmanı (`src/scenes/`, `src/render/`, `src/ui/`)** her karede `sim.update(dt)` çağırır, `sim.state`'i çizer, dönen olaylarla efekt üretir. Oyunu sadece `Simulation`'ın komut metotlarıyla değiştirir (`build`, `upgrade`, `sell`, `startNextWave`).
 - **Duraklatma ve hız** çizim katmanındadır: duraklatılınca `update` çağrılmaz; 2x'te `update(dt * 2)` çağrılır.
 - **Görseller tamamen kodla çizilir** (Phaser Graphics ve çalışma anında üretilen dokular). Resim/ses dosyası yok.
-- Test kancası: `window.__neonKale = { game, sim() }`. Uçtan uca testler (Playwright) oyunun durumunu buradan okur.
+- Test kancası: `window.__neonKale = { game, scene(), sim(), state(), tileToScreen(col, row), fastForward(sn) }` (tür: `src/types-global.d.ts`). Uçtan uca testler (Playwright) oyunun durumunu buradan okur; `fastForward` simülasyonu duraklatma ve hızdan bağımsız ileri sarar.
 
 ## Ekran yerleşimi (1280 × 720 mantıksal, `Scale.FIT` ile ekrana sığar)
 
