@@ -741,7 +741,46 @@ async function keys(browser) {
   await context.close();
 }
 
-const SECTIONS = { desktop, busy, results: resultsSection, interact, sizes, mobile, keys };
+/**
+ * Phaser KeyboardManager her DOM tuş olayında kuyruğun TAMAMINI yeniden işler (MANAGER_PROCESS), kuyruk ise karede bir
+ * kez (POST_STEP) boşalır. Aynı karede 3+ tuş olayı (iki tuşa hızlı basış, düşük FPS) olursa önceki keydown'lar yeniden
+ * yayınlanır ve GameScene.onKeyDown aynı basışı iki kez işler.
+ */
+async function combo(browser) {
+  console.log('\n[combo] aynı karede birden çok tuş olayı');
+  const { context, page } = await openGame(browser, { width: 1280, height: 720 });
+  await startGame(page);
+  const info = () =>
+    page.evaluate(() => {
+      const s = window.__neonKale.game.scene.getScene('game');
+      const st = window.__neonKale.state();
+      return { level: st.towers[0]?.level, gold: st.gold, speed: s.speed, paused: s.paused, waves: st.wavesStarted, fps: Math.round(window.__neonKale.game.loop.actualFps) };
+    });
+  await page.evaluate(() => {
+    const h = window.__neonKale;
+    const sim = h.sim();
+    sim.gold = 1000;
+    sim.build('laser', { col: 5, row: 5 });
+    h.game.scene.getScene('game').selectedId = sim.state.towers[0].id;
+  });
+  await frames(page, 3);
+  const a0 = await info();
+  await page.keyboard.press('u');
+  await page.keyboard.press('f');
+  await frames(page, 3);
+  note('U sonra F (beklenen: seviye 2, altın −40, hız 2)', { önce: a0, sonra: await info() });
+  // Gerçekçi dokunuş süreleri: F 50 ms basılı, 30 ms ara, P 50 ms basılı.
+  await frames(page, 2);
+  const c0 = await info();
+  await page.keyboard.press('f', { delay: 50 });
+  await page.waitForTimeout(30);
+  await page.keyboard.press('p', { delay: 50 });
+  await frames(page, 3);
+  note('F sonra P (beklenen: hız değişir ve oyun duraklar)', { önce: c0, sonra: await info() });
+  await context.close();
+}
+
+const SECTIONS = { desktop, busy, results: resultsSection, interact, sizes, mobile, keys, combo };
 
 async function main() {
   await mkdir(SCREENS, { recursive: true });
