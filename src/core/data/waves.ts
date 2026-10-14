@@ -42,7 +42,7 @@ export const WAVES: readonly WaveDef[] = [
   {
     groups: [
       { enemy: 'scout', count: 26, interval: 0.3, delay: 0 },
-      { enemy: 'brute', count: 12, interval: 1.1, delay: 3 },
+      { enemy: 'brute', count: 10, interval: 1.3, delay: 3 },
     ],
   },
   {

@@ -7,8 +7,8 @@ export const RULES: RulesConfig = {
   waveBonusBase: 15,
   waveBonusPerWave: 3,
   earlyCallBonus: 10,
-  /** Geç dalgalar oyuncunun büyüyen kule gücüne yetişsin diye dik: 10. dalgada can ×5.95. */
-  hpGrowthPerWave: 0.55,
+  /** Geç dalgalar oyuncunun büyüyen kule gücüne yetişsin diye dik: 10. dalgada can ×5.05. */
+  hpGrowthPerWave: 0.45,
   threeStarLives: 18,
   twoStarLives: 10,
 };

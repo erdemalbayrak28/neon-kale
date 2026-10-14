@@ -4,7 +4,9 @@ Tarayıcıda çalışan, neon görünümlü bir kule savunma oyunu.
 
 ## Oynamak
 
-`dist/index.html` dosyasını tarayıcıda açmanız yeterli. Kurulum gerekmez.
+**`oyna/NeonKale.html`** dosyasına çift tıklayın, oyun tarayıcıda açılır. Kurulum ya da internet gerekmez.
+
+(Kodu değiştirdikten sonra `npm run build` ile yeniden derlenir; çıktı `dist/index.html`. Oynanabilir kopyayı güncellemek için onu `oyna/NeonKale.html` üzerine kopyalayın.)
 
 **Kontroller**
 - **1 / 2 / 3** ya da paneldeki kule: yerleştirme modu. Haritaya tıklayınca kule kurulur.

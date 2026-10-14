@@ -49,6 +49,7 @@ export class GameScene extends Phaser.Scene {
   private placing: TowerKind | null = null;
   private selectedId: number | null = null;
   private hoverTile: TileCoord | null = null;
+  private readonly handledKeys = new WeakSet<KeyboardEvent>();
   private paused = false;
   private speed: Speed = 1;
   /** Oyunun bittiği gerçek zaman (saniye); bitmediyse null. */
@@ -356,6 +357,10 @@ export class GameScene extends Phaser.Scene {
   }
 
   private onKeyDown(event: KeyboardEvent): void {
+    // Phaser, aynı karede birden fazla tuş olayı gelince önceki olayı yeniden yayınlayabiliyor;
+    // aynı olay nesnesini ikinci kez işlemiyoruz (yoksa U iki kez yükseltir, F/P etkisiz kalır).
+    if (this.handledKeys.has(event)) return;
+    this.handledKeys.add(event);
     if (this.result.visible) {
       if (event.code === 'Enter' || event.code === 'NumpadEnter') this.restart();
       return;
