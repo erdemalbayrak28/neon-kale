@@ -49,6 +49,16 @@ export const COLORS = {
   runner: 0xff3df0,
   scout: 0xffe14d,
   brute: 0xff4d5e,
+  /** Haritadaki engel karoları (soluk kristaller). */
+  rock: 0x6c5ce7,
+  /** Düşmanların girdiği kapı. */
+  entry: 0xb84dff,
+  /** Korunan kale (çıkış). */
+  exit: 0xff4d6d,
+  /** Panel kartlarının iç zemini. */
+  card: 0x0d1424,
+  /** Ana menüdeki ızgara. */
+  menuGrid: 0xff3df0,
 } as const;
 
 /** Phaser renk sayısını CSS metnine çevirir (Text nesneleri için). */
