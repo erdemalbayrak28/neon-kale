@@ -2,6 +2,8 @@ import { COLORS } from '../../config';
 import type { TowerDef, TowerKind } from '../types';
 
 // Kule tanımları. Denge ayarı buradan yapılır; tests/core/balance.test.ts dengenin bozulmadığını kontrol eder.
+// Buz yavaşlatması düşmanları sıkıştırır, top patlaması da sıkışık grupta herkese vurur. Bu ikili çok güçlü olduğu için
+// yavaşlatma çarpanları ve patlama yarıçapları ölçülü tutulur; yoksa son dalgalar hiç zorlamaz.
 export const TOWERS: Readonly<Record<TowerKind, TowerDef>> = {
   laser: {
     kind: 'laser',
@@ -24,9 +26,9 @@ export const TOWERS: Readonly<Record<TowerKind, TowerDef>> = {
     hotkey: '2',
     attack: 'projectile',
     levels: [
-      { cost: 80, damage: 16, fireInterval: 1.4, range: 3.0, projectileSpeed: 7, splashRadius: 0.9 },
-      { cost: 60, damage: 26, fireInterval: 1.3, range: 3.2, projectileSpeed: 7.5, splashRadius: 1.0 },
-      { cost: 100, damage: 42, fireInterval: 1.2, range: 3.4, projectileSpeed: 8, splashRadius: 1.15 },
+      { cost: 80, damage: 16, fireInterval: 1.4, range: 3.0, projectileSpeed: 7, splashRadius: 0.75 },
+      { cost: 60, damage: 26, fireInterval: 1.3, range: 3.2, projectileSpeed: 7.5, splashRadius: 0.85 },
+      { cost: 100, damage: 42, fireInterval: 1.2, range: 3.4, projectileSpeed: 8, splashRadius: 1.0 },
     ],
   },
   frost: {
@@ -37,9 +39,9 @@ export const TOWERS: Readonly<Record<TowerKind, TowerDef>> = {
     hotkey: '3',
     attack: 'pulse',
     levels: [
-      { cost: 70, damage: 2, fireInterval: 1.2, range: 2.0, slowFactor: 0.6, slowDuration: 1.5 },
-      { cost: 50, damage: 4, fireInterval: 1.1, range: 2.3, slowFactor: 0.5, slowDuration: 1.8 },
-      { cost: 80, damage: 7, fireInterval: 1.0, range: 2.6, slowFactor: 0.4, slowDuration: 2.0 },
+      { cost: 70, damage: 2, fireInterval: 1.2, range: 2.0, slowFactor: 0.7, slowDuration: 1.5 },
+      { cost: 50, damage: 4, fireInterval: 1.1, range: 2.3, slowFactor: 0.6, slowDuration: 1.8 },
+      { cost: 80, damage: 7, fireInterval: 1.0, range: 2.6, slowFactor: 0.5, slowDuration: 2.0 },
     ],
   },
 };

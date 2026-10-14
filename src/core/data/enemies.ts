@@ -1,6 +1,9 @@
 import { COLORS } from '../../config';
 import type { EnemyDef, EnemyKind } from '../types';
 
+// Düşman tanımları. Zırhlı'nın zırhı lazerin ilk iki seviyesini neredeyse etkisiz bırakır (5 → 1, 8 → 2 hasar):
+// 5. dalgadan itibaren top ve buz kulesi gerekir. tests/core/balance.test.ts bu eğriyi kontrol eder.
+
 export const ENEMIES: Readonly<Record<EnemyKind, EnemyDef>> = {
   runner: {
     kind: 'runner',
@@ -28,9 +31,9 @@ export const ENEMIES: Readonly<Record<EnemyKind, EnemyDef>> = {
     kind: 'brute',
     name: 'Zırhlı',
     color: COLORS.brute,
-    maxHp: 80,
+    maxHp: 95,
     speed: 0.95,
-    armor: 3,
+    armor: 6,
     reward: 14,
     leakDamage: 2,
     radius: 0.36,
